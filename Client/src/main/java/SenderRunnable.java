@@ -34,6 +34,7 @@ public class SenderRunnable implements Runnable {
                 }
             } finally {
                 out.close();
+                socket.close();
             }
         } catch (IOException e) {
             e.printStackTrace();

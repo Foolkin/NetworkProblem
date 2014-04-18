@@ -9,7 +9,8 @@ import java.util.concurrent.Executors;
 public class Client {
     Socket socket;
 
-    public Client(String url, int port){
+    public Client(String url, int port) {
+
         initSocket(url, port);
     }
 
@@ -20,35 +21,28 @@ public class Client {
     }
 
     /**
-     *  Starts session between client and Server
-     *  Multithreaded. Uses ExecutorServise.
+     * Starts session between client and Server
+     * Multithreaded. Uses ExecutorServise.
      */
-    public void startClient(){
-        try {
-            try {
-                ExecutorService executor = Executors.newCachedThreadPool();
+    public void startClient() {
+        ExecutorService executor = Executors.newCachedThreadPool();
 
-                executor.execute(new SenderRunnable(socket));
-                executor.execute(new RecivierRunnable(socket));
+        executor.execute(new SenderRunnable(socket));
+        executor.execute(new RecivierRunnable(socket));
 
-                executor.shutdown();
-            } finally {
-                socket.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        executor.shutdown();
     }
 
 
     /**
      * Create Socket object with current url address and port
+     *
      * @param port - int type. Port number which ServerSocket will listen.
      */
-    public void initSocket(String url, int port){
-        try{
+    public void initSocket(String url, int port) {
+        try {
             socket = new Socket(url, port);
-        } catch (IOException e){
+        } catch (IOException e) {
             System.err.println(e);
         }
     }

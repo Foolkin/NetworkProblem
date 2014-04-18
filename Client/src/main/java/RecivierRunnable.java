@@ -30,8 +30,9 @@ public class RecivierRunnable implements Runnable {
                     }
                 }
             } finally {
-                inputStream.close();
                 in.close();
+                inputStream.close();
+                socket.close();
             }
         } catch (IOException e){
             e.printStackTrace();
