@@ -55,7 +55,7 @@ public class Server {
         while (!done && in.hasNextLine()) {
             String line = in.nextLine();
             out.println("Echo: " + line);
-            if (line.trim().equals("BYE"))
+            if (line.trim().equals(Constants.SHUTDOWN_MESSAGE))
                 done = true;
         }
     }
