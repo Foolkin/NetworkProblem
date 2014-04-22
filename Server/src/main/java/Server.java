@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Server {
     /**
-     * ServerSocket, that will be used to connect with client
+     * ServerSocket, that will be used to connect with client.
      */
     private ServerSocket serverSocket;
 

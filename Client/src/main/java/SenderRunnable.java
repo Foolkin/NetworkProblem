@@ -5,14 +5,14 @@ import java.net.Socket;
 import java.util.Scanner;
 
 /**
- * This class send serves to send messages that comes from Scanner to OutPutStream.
+ * This class serves to send messages that comes from Scanner to OutPutStream.
  * Implements Runnable.
  * BYE keyword stops the thread.
  */
 public class SenderRunnable implements Runnable {
 
     /**
-     * Socket with server ip address and port number.
+     * Socket that contains server ip address and port number.
      */
     private Socket socket;
 

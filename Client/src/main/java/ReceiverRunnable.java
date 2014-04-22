@@ -4,7 +4,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 /**
- * This class serves to receive messages from InputStream and output ot console.
+ * This class serves to receive messages from InputStream and output to console.
  * BYE Keyword stops the thread .
  */
 public class ReceiverRunnable implements Runnable {
