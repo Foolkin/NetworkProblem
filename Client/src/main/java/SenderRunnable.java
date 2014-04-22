@@ -10,34 +10,49 @@ import java.util.Scanner;
  * BYE keyword stops the thread.
  */
 public class SenderRunnable implements Runnable {
-    Socket socket;
 
+    /**
+     * Socket with server ip address and port number.
+     */
+    private Socket socket;
+
+    /**
+     * Constructor.
+     *
+     * @param socket Socket with server ip address and port number.
+     */
     public SenderRunnable(Socket socket) {
         this.socket = socket;
     }
 
+    /**
+     * Get string from console and send this string to server.
+     */
+    @Override
     public void run() {
-        try {
+        try (
             OutputStream outputStream = socket.getOutputStream();
             Scanner in = new Scanner(System.in);
-            PrintWriter out = new PrintWriter(outputStream, true);
-            try {
-                boolean done = false;
+            PrintWriter out = new PrintWriter(outputStream, true)
+        ) {
+            boolean done = false;
 
-                while (!done && in.hasNextLine()) {
-                    String line = in.nextLine();
-                    out.println(line);
+            while (!done && in.hasNextLine()) {
+                String line = in.nextLine();
+                out.println(line);
 
-                    if (line.trim().equals("BYE")) {
-                        done = true;
-                    }
+                if (line.trim().equals(Constants.SHUTDOWN_MESSAGE)) {
+                    done = true;
                 }
-            } finally {
-                out.close();
-                socket.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("can't send data", e);
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                // ignored
+            }
         }
     }
 }

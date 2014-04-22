@@ -10,15 +10,13 @@ import java.util.Scanner;
  * This class contains server socket that could send echo messages to client.
  */
 public class Server {
-    ServerSocket serverSocket;
+    /**
+     * ServerSocket, that will be used to connect with client
+     */
+    private ServerSocket serverSocket;
 
     public Server(int port){
         initServerSocket(port);
-    }
-
-    public static void main(String[] args) {
-        Server server = new Server(8189);
-        server.startServer();
     }
 
     /**
@@ -34,8 +32,7 @@ public class Server {
                 Scanner in = new Scanner(inStream);
                 PrintWriter out = new PrintWriter(outStream, true);
 
-                out.println("Anotheria bootcamp Server.");
-                out.println("Enter BYE to exit.");
+                out.println("Anotheria bootcamp Server. \nEnter BYE to exit.");
 
                 echo(in, out);
             } finally {
@@ -49,8 +46,8 @@ public class Server {
 
     /**
      * Get String from Scanner object and put echo string to PrintWriter object
-     * @param in - Scanner type. Contains string that should be send in echo
-     * @param out - PrintWriter type. Contains echo string.
+     * @param in Contains string that should be send in echo
+     * @param out Contains echo string.
      */
     public void echo(Scanner in, PrintWriter out){
         boolean done = false;
@@ -65,7 +62,7 @@ public class Server {
 
     /**
      * Create Socket object with current port
-     * @param port - int type. Port number which ServerSocket will listen.
+     * @param port Port number that ServerSocket will listen.
      */
     public void initServerSocket(int port){
         try{
@@ -74,4 +71,10 @@ public class Server {
             System.err.println(e);
         }
     }
+
+    public static void main(String[] args) {
+        Server server = new Server(8189);
+        server.startServer();
+    }
+
 }
