@@ -73,8 +73,14 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        Server server = new Server(8189);
-        server.startServer();
+        if (args.length < 1) {
+            throw new IllegalArgumentException("Unexpected number of arguments");
+        }
+
+        final int port = Integer.parseInt(args[0]);
+
+        new Server(port).startServer();
+
     }
 
 }
