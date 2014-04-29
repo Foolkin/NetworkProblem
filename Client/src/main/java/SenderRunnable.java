@@ -39,7 +39,7 @@ public class SenderRunnable implements Runnable {
 
             while (!done && in.hasNextLine()) {
                 String line = in.nextLine();
-                Output.println(line);
+                out.println(line);
 
                 if (line.trim().equals(Constants.SHUTDOWN_MESSAGE)) {
                     done = true;

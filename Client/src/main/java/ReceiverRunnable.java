@@ -35,7 +35,7 @@ public class ReceiverRunnable implements Runnable {
             boolean done = false;
             while (!done && in.hasNextLine()) {
                 String line = in.nextLine();
-                System.out.println(line);
+                Output.println(line);
 
                 if (line.trim().equals(Constants.SHUTDOWN_MESSAGE)) {
                     done = true;
